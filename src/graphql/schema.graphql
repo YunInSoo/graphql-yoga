@@ -1,0 +1,8 @@
+type Movie {
+  id: Int!
+  title: String
+}
+type Query {
+  movies(limit: Int, rating: Float): [Movie]!
+  movieTest: String!
+}
