@@ -1,7 +1,8 @@
 import axios from "axios";
 const BASE_URL = "https://yts-proxy.now.sh/";
 const LIST_MOVIES_URL = `${BASE_URL}list_movies.json`;
-const movie = "hi movie";
+const MOVIE_DETATLS_USR = `${BASE_URL}movie_details.json`;
+const MOVIE_SUGGESTIONS_URL = `${BASE_URL}movie_suggestions.json`;
 
 export const getMovies = async (limit, rating) => {
   const {
@@ -18,4 +19,30 @@ export const getMovies = async (limit, rating) => {
   return movies;
 };
 
-export const getMovieTest = () => movie;
+export const getMovie = async id => {
+  const {
+    data: {
+      data: { movie },
+    },
+  } = await axios(MOVIE_DETATLS_USR, {
+    params: {
+      movie_id: id,
+    },
+  });
+
+  return movie;
+};
+
+export const getSuggestions = async id => {
+  const {
+    data: {
+      data: { movies },
+    },
+  } = await axios(MOVIE_SUGGESTIONS_URL, {
+    params: {
+      movie_id: id,
+    },
+  });
+
+  return movies;
+};

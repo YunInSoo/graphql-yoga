@@ -1,8 +1,9 @@
-import { getMovies, getMovieTest } from "./db";
+import { getMovies, getSuggestions, getMovie } from "./db";
 const resolvers = {
   Query: {
     movies: (_, { limit, rating }) => getMovies(limit, rating),
-    movieTest: () => getMovieTest(),
+    movie: (_, { id }) => getMovie(id),
+    suggestions: (_, { id }) => getSuggestions(id),
   },
 };
 export { resolvers };
